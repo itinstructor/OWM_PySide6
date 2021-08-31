@@ -29,22 +29,13 @@ class OWM(QMainWindow, Ui_MainWindow):
         """ Initialize PySide6 QT GUI"""
         # Create the GUI
         self.setupUi(self)
-        # Set program corner icon
-        # self.setWindowIcon(QtGui.QIcon("weather.ico"))
         # Remove title bar
         self.setWindowFlag(Qt.FramelessWindowHint)
 
         # Create weather object with a reference to current class
         self.weather_class = WeatherClass(self)
 
-        # QAction *act1 = new QAction(this);
-        # QAction *act2 = new QAction(act1);
-        # act1->setShortcut("Ctrl+O");
-        # act2->setShortcut("Ctrl+L");
-        # connect(act2, SIGNAL(triggered(bool)), act1, SIGNAL(triggered(bool)));
-
-        QAction
-        # Connect the clicked event/signal to the set_weather event handler/slot
+        # Connect the clicked event/signal to the get_location event handler/slot
         self.btn_get_weather.clicked.connect(self.weather_class.get_location)
         self.btn_get_weather.setShortcut("Return")
 
