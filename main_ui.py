@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(531, 590)
+        MainWindow.resize(531, 573)
         self.action_exit = QAction(MainWindow)
         self.action_exit.setObjectName(u"action_exit")
         self.action_about = QAction(MainWindow)
@@ -333,7 +333,7 @@ class Ui_MainWindow(object):
         self.lbl_weather_icon.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.progress_bar = QProgressBar(self.centralwidget)
         self.progress_bar.setObjectName(u"progress_bar")
-        self.progress_bar.setGeometry(QRect(20, 552, 118, 16))
+        self.progress_bar.setGeometry(QRect(20, 580, 118, 16))
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -348,24 +348,9 @@ class Ui_MainWindow(object):
         self.btn_exit.setObjectName(u"btn_exit")
         self.btn_exit.setGeometry(QRect(430, 10, 75, 24))
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QMenuBar(MainWindow)
-        self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 531, 22))
-        self.menu_File = QMenu(self.menubar)
-        self.menu_File.setObjectName(u"menu_File")
-        self.menuHelp = QMenu(self.menubar)
-        self.menuHelp.setObjectName(u"menuHelp")
-        MainWindow.setMenuBar(self.menubar)
         self.status_bar = QStatusBar(MainWindow)
         self.status_bar.setObjectName(u"status_bar")
         MainWindow.setStatusBar(self.status_bar)
-
-        self.menubar.addAction(self.menu_File.menuAction())
-        self.menubar.addAction(self.menuHelp.menuAction())
-        self.menu_File.addAction(self.action_get_weather)
-        self.menu_File.addSeparator()
-        self.menu_File.addAction(self.action_exit)
-        self.menuHelp.addAction(self.action_about)
 
         self.retranslateUi(MainWindow)
 
@@ -419,7 +404,5 @@ class Ui_MainWindow(object):
         self.lbl_weather_icon.setText("")
         self.lbl_wind_arrow.setText("")
         self.btn_exit.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
-        self.menu_File.setTitle(QCoreApplication.translate("MainWindow", u"&File", None))
-        self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"&Help", None))
     # retranslateUi
 

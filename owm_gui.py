@@ -12,7 +12,7 @@ import sys
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QAction
 # from PySide6 import QtGui
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow, QMenu
 # Import gui py file created by QT Designer
 from main_ui import Ui_MainWindow
 # Import controller class
@@ -70,6 +70,17 @@ class OWM(QMainWindow, Ui_MainWindow):
         self.set_input()
 
 #--------------------- SELECT INPUT -------------------#
+    def contextMenuEvent(self, event):
+        # Creating a menu object with the central widget as parent
+        menu = QMenu(self)
+        # Populating the menu with actions
+        menu.addAction(self.action_about)
+        menu.addAction(self.action_get_weather)
+        menu.addAction(self.action_exit)
+        # Launching the menu
+        menu.exec(event.globalPos())
+
+#--------------------- SELECT INPUT -------------------#
     def set_input(self):
         """ Set focus and select lineEdit, wait for user input"""
         self.lineEdit.setFocus()
@@ -90,6 +101,7 @@ class OWM(QMainWindow, Ui_MainWindow):
         self.lineEdit.setFocus()
         self.lineEdit.selectAll()
 
+#-------- OVERRIDE MOUSE EVENTS TO MOVE PROGRAM WINDOW -------------#
     def mousePressEvent(self, event):
         """ Override the mousePressEvent """
         # Store the current position of the mouse in previous position
@@ -122,6 +134,7 @@ def main():
     owm.setPalette(dark_palette.darkPalette)
     # Create program object
     window = OWM()
+
     # Make program visible
     window.show()
     # Execute the program, setup clean exit of program

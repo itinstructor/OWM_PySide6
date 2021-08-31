@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>531</width>
-    <height>590</height>
+    <height>573</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -688,7 +688,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>552</y>
+      <y>580</y>
       <width>118</width>
       <height>16</height>
      </rect>
@@ -732,32 +732,6 @@
      <string>Exit</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>531</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menu_File">
-    <property name="title">
-     <string>&amp;File</string>
-    </property>
-    <addaction name="action_get_weather"/>
-    <addaction name="separator"/>
-    <addaction name="action_exit"/>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>&amp;Help</string>
-    </property>
-    <addaction name="action_about"/>
-   </widget>
-   <addaction name="menu_File"/>
-   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="status_bar"/>
   <action name="action_exit">
