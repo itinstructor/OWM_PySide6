@@ -315,9 +315,9 @@ class WeatherClass:
         # Set pixmap to label
         self.owm.lbl_wind_arrow.setPixmap(pixmap)
 
-#--------------------- HELP ABOUT MESSAGE BOX -------------------#
+#----------------------- ABOUT MESSAGE BOX -------------------#
     def about_program(self):
         title = "OWM Weather App"
         message = "Built with: Python 3.9.6 and PySide 6.12."
         message += "\nAuthor: Bill Loring"
-        QMessageBox.information(self.owm, title, message)
+        QMessageBox.about(self.owm, title, message)

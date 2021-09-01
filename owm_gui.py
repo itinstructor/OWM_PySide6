@@ -25,13 +25,7 @@ class OWM(QMainWindow, Ui_MainWindow):
 
     def __init__(self):
         super(OWM, self).__init__()
-
-        """ Initialize PySide6 QT GUI"""
-        # Create the GUI
-        self.setupUi(self)
-        # Remove title bar
-        self.setWindowFlag(Qt.FramelessWindowHint)
-
+        self.initializeUI()
         # Create weather object with a reference to current class
         self.weather_class = WeatherClass(self)
 
@@ -60,11 +54,23 @@ class OWM(QMainWindow, Ui_MainWindow):
         # Wait for the user to click Get Weather or press Return
         self.set_input()
 
-#--------------------- SELECT INPUT -------------------#
+#--------------------- INITIALIZE UI -------------------#
+    def initializeUI(self):
+        """ Initialize PySide6 QT GUI"""
+        # Create the GUI
+        self.setupUi(self)
+        # Remove title bar
+        self.setWindowFlag(Qt.FramelessWindowHint)
+
+#--------------------- SETUP CONTEXT MENU -------------------#
     def contextMenuEvent(self, event):
+        """ 
+            Override the contextMenuEvent
+            Setup a context or right click menu
+        """
         # Creating a menu object with the central widget as parent
         menu = QMenu(self)
-        # Populating the menu with actions
+        # Populating the menu with actions defined in init
         menu.addAction(self.action_about)
         menu.addAction(self.action_get_weather)
         menu.addAction(self.action_exit)
