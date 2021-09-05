@@ -174,7 +174,7 @@ class WeatherClass:
         self.owm.lbl_humidity.setText(f"{self.humidity}%")
         self.owm.lbl_pressure.setText(f"{self.pressure} inHg")
         self.owm.lbl_wind.setText(
-            f"{self.wind_speed} mph {self.degrees}° {self.cardinal_direction}")
+            f"{self.wind_speed} mph {self.cardinal_direction}")
         self.owm.lbl_cloud_cover.setText(f"{self.clouds}%")
         self.owm.lbl_sunrise.setText(f"{self.sunrise_time}")
         self.owm.lbl_sunset.setText(f"{self.sunset_time}")

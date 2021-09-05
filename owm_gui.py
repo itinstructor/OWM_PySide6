@@ -9,6 +9,7 @@
 """
 
 import sys
+from PySide6 import QtCore
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QAction
 # from PySide6 import QtGui
@@ -31,12 +32,11 @@ class OWM(QMainWindow, Ui_MainWindow):
 
         # Connect the clicked event/signal to the get_location event handler/slot
         self.btn_get_weather.clicked.connect(self.weather_class.get_location)
-        self.btn_get_weather.setShortcut("Return")
 
         # Exit the program
         self.btn_exit.clicked.connect(self.close)
-        self.btn_exit.setShortcut("Esc")
         self.action_exit.triggered.connect(self.close)
+        self.btn_exit.setShortcut("Escape")
 
         self.action_about.triggered.connect(self.weather_class.about_program)
         self.action_get_weather.triggered.connect(
@@ -45,8 +45,8 @@ class OWM(QMainWindow, Ui_MainWindow):
         # Add widgets to status bar
         self.status_bar.addPermanentWidget(self.progress_bar)
         # Set statusbar tips
-        self.btn_get_weather.setStatusTip("Get current weather")
-        self.btn_exit.setStatusTip("Exit")
+        self.btn_get_weather.setStatusTip("Get current weather (Press Enter)")
+        self.btn_exit.setStatusTip("Exit Program (Press Esc)")
         self.lineEdit.setStatusTip(
             "Enter Town, State, Country (Scottsbluff, NE, US)")
 
@@ -114,11 +114,12 @@ class OWM(QMainWindow, Ui_MainWindow):
         self.previous_pos = event.globalPosition()
         # self._drag_active = True
 
-    def mouseReleaseEvent(self, event):
-        """ Override the mouseReleaseEvent """
-        pass
-        # if self._drag_active:
-        #     self._drag_active = False
+#-------- OVERRIDE KEYPRESS EVENTS TO CAPTURE KEYSTROKES -------------#
+    # Overide the keyPressEvent
+    def keyPressEvent(self, event):
+        # Get location for weather
+        if event.key() == QtCore.Qt.Key_Enter or QtCore.Qt.Key_Return:
+            self.weather_class.get_location()
 
 
 #--------------------- START APPLICATION -------------------#
