@@ -5,7 +5,7 @@
     Purpose: OpenWeatherMap GUI with PySide6
     stick with pyside6 for nuitka
     Command line to rebuild ui to py
-    pyside6-uic main_window.ui –o main_ui.py
+    pyside6-uic main_window.ui -o main_ui.py
 """
 
 import sys
@@ -42,6 +42,8 @@ class OWM(QMainWindow, Ui_MainWindow):
         self.action_get_weather.triggered.connect(
             self.weather_class.get_location)
 
+        # Remove sizing grip from status bar
+        self.status_bar.setSizeGripEnabled(False)
         # Add widgets to status bar
         self.status_bar.addPermanentWidget(self.progress_bar)
         # Set statusbar tips
@@ -61,6 +63,8 @@ class OWM(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         # Remove title bar
         self.setWindowFlag(Qt.FramelessWindowHint)
+        # Don't allow window to be resized
+        self.setFixedSize(self.size())
 
 #--------------------- SETUP CONTEXT MENU -------------------#
     def contextMenuEvent(self, event):

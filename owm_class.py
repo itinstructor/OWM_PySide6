@@ -123,11 +123,15 @@ class WeatherClass:
         # Get cloud cover percentage
         self.clouds = self.__clouds_dict.get("all")
 
-        # Get sunrise and sunset time
-        self.sunrise_time = weather_utils.convert_time(
-            self.__sys_dict.get("sunrise"))
-        self.sunset_time = weather_utils.convert_time(
-            self.__sys_dict.get("sunset"))
+        # Get sunrise and sunset time from API in Unix UTC
+        sunrise_time = self.__sys_dict.get("sunrise")
+        sunset_time = self.__sys_dict.get("sunset")
+        # Add shift in seconds from UTC
+        sunrise_time = sunrise_time + self.__weather_data.get("timezone")
+        sunset_time = sunset_time + self.__weather_data.get("timezone")
+        # Convert from Unix UTC timestamp to Python time
+        self.sunrise_time = weather_utils.convert_time(sunrise_time)
+        self.sunset_time = weather_utils.convert_time(sunset_time)
 
         # Get latitude and longitude
         self.latitude = self.__coord_dict.get("lat")
@@ -301,12 +305,12 @@ class WeatherClass:
 
         # Create rectangle to draw pie shape in
         rect = QRectF(10, 10, 60, 60)
-        
+
         # Set the start angle + 80 degrees as drawPie starts at 90 degrees
         # multiply by 16, the drawing angle increments in 1/16 of a degree
         # Convert from clockwise to counterclockwise
-        startAngle = ((-self.degrees + 80)% 360) * 16
-        
+        startAngle = ((-self.degrees + 80) % 360) * 16
+
         spanAngle = 20 * 16
         # Draw weather direction
         painter.drawPie(rect, startAngle, spanAngle)
@@ -318,6 +322,6 @@ class WeatherClass:
 #----------------------- ABOUT MESSAGE BOX -------------------#
     def about_program(self):
         title = "OWM Weather App"
-        message = "Built with: Python 3.9.6 and PySide 6.12."
+        message = "Built with: Python 3.9.9 and PySide 6.12."
         message += "\nAuthor: Bill Loring"
         QMessageBox.about(self.owm, title, message)
